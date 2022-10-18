@@ -24,6 +24,8 @@ public class MainController : ControllerBase
         response = request;
         var result = stenographService.EncryptString(request.Text, request.SecretKey);
         response.ResponseText = result;
+        if(String.IsNullOrEmpty(request.SecretKey))
+            response.SecretKey = "I can not show you the secret key because you did not enter it.";
         return Ok(response);
     }
 
